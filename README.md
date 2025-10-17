@@ -26,11 +26,14 @@ made by Mr.W
 `pip install torch transformers pandas tqdm scipy`
 
 ## 使用方式
+- 注意：该仓库不包含模型文件，需自行下载或通过train.py进行训练。
+- 训练代码：
+`python train.py`
 
 ### 命令行参数
 ```
-python topic_sentiment_analysis.py \
-    --input <输入CSV文件路径> \
+python sentiment_analyzer.py \
+    --input <输入CSV文件路径> \ 
     [--model_path <模型路径>] \
     [--text_column <评论文本列名>] \
     [--output_dir <输出目录>] \
