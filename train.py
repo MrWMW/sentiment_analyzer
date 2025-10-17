@@ -15,9 +15,9 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trai
 # 2. 定义全局常量
 # ==============================================================================
 MODEL_NAME = 'hfl/chinese-bert-wwm'
-DATASET_NAME = 'ChnSentiCorp.csv'
-POS_FILE = 'pos60000.txt'  # 积极情绪数据文件
-NEG_FILE = 'neg60000.txt'  # 消极情绪数据文件
+DATASET_NAME = '.data/ChnSentiCorp.csv'
+POS_FILE = '.data/pos60000.txt'  # 积极情绪数据文件
+NEG_FILE = '.data/neg60000.txt'  # 消极情绪数据文件
 OUTPUT_DIR = './output/bert-chnsenticorp-finetuned'
 MAX_LENGTH = 128
 BATCH_SIZE = 64
@@ -173,12 +173,12 @@ def setup_trainer(model, train_dataset, eval_dataset):
     # 定义训练参数
     training_args = TrainingArguments(
         output_dir=OUTPUT_DIR,
-        evaluation_strategy="steps",  # 改为steps而不是epoch
+        evaluation_strategy="steps",  
         eval_steps=500,  # 每500步评估一次
         save_strategy="steps",
         save_steps=500,
         learning_rate=LEARNING_RATE,
-        per_device_train_batch_size=32,  # 增加批次大小
+        per_device_train_batch_size=32,  
         per_device_eval_batch_size=32,
         num_train_epochs=NUM_EPOCHS,
         weight_decay=0.01,
@@ -189,12 +189,12 @@ def setup_trainer(model, train_dataset, eval_dataset):
         disable_tqdm=False,
         fp16=True,
         dataloader_pin_memory=True,
-        dataloader_num_workers=4,  # 增加工作进程数
+        dataloader_num_workers=4,  
         save_total_limit=2,
         gradient_accumulation_steps=2,
         warmup_steps=500,
         optim="adamw_torch",  # 使用融合优化器
-        report_to="none",  # 禁用默认的报告以减少开销
+        report_to="none",  
     )
     
     # 实例化Trainer
