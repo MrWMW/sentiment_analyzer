@@ -1,4 +1,6 @@
 # sentiment_analyzer
+made by Mr.W
+
 基于BERT微调的改进总体话题情感分析
 
 ## 概述
